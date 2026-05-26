@@ -6,6 +6,9 @@
     <title>Volt | Komunikator Nowej Generacji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         /* Płynna animacja gradientu w tle */
         @keyframes gradient-move {
             0% { background-position: 0% 50%; }
@@ -39,22 +42,10 @@
 
     <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-6 h-16 flex items-center justify-between">
         
-        <div class="flex items-center gap-4">
-            <div class="w-20 h-20 flex items-center justify-center select-none cursor-pointer overflow-hidden" onclick="handleLogoClick()">
-                <img 
-                    src="7304cf01-cb04-4125-9ba9-0342801a466e.jpg" 
-                    alt="Volt Logo" 
-                    class="w-full h-full object-contain scale-125" 
-                    style="mix-blend-mode: screen; filter: brightness(1.1); -webkit-user-drag: none;" 
-                />
-            </div>
-
-            <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
-                <button onclick="navigateToFeatures()" class="hover:text-cyan-400 transition-colors focus:outline-none">Funkcje</button>
-                <button onclick="navigateToSecurity()" class="hover:text-cyan-400 transition-colors focus:outline-none">Bezpieczeństwo</button>
-                <button onclick="navigateToCommunity()" class="hover:text-cyan-400 transition-colors focus:outline-none">Społeczność</button>
-                <a href="https://github.com" target="_blank" class="hover:text-cyan-400 transition-colors">GitHub</a>
-            </div>
+        <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
+            <button onclick="scrollToSection('features')" class="hover:text-cyan-400 transition-colors focus:outline-none">Funkcje</button>
+            <button onclick="scrollToSection('security')" class="hover:text-cyan-400 transition-colors focus:outline-none">Bezpieczeństwo</button>
+            <button onclick="scrollToSection('community')" class="hover:text-cyan-400 transition-colors focus:outline-none">Społeczność</button>
         </div>
 
         <div class="flex items-center gap-4">
@@ -64,7 +55,7 @@
         </div>
     </nav>
 
-    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 max-w-5xl mx-auto z-10">
+    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 pt-40 pb-24 max-w-5xl mx-auto z-10">
         
         <div class="glass-card text-xs text-cyan-400 font-medium px-4 py-1.5 rounded-full border border-cyan-500/20 mb-6 tracking-wide uppercase shadow-[0_0_15px_rgba(6,182,212,0.1)] select-none">
             🚀 Volt Web v1.0.0 wjechał na salony
@@ -82,65 +73,68 @@
             <button onclick="openLoginMenu()" class="neon-glow w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-lg text-center focus:outline-none">
                 Odpala aplikację Volta
             </button>
-            <button onclick="navigateToFeatures()" class="glass-card w-full sm:w-auto text-slate-300 hover:text-white font-semibold text-sm px-8 py-4 rounded-xl transition-all text-center focus:outline-none">
+            <button onclick="scrollToSection('features')" class="glass-card w-full sm:w-auto text-slate-300 hover:text-white font-semibold text-sm px-8 py-4 rounded-xl transition-all text-center focus:outline-none">
                 Zobacz co potrafi
             </button>
         </div>
     </main>
 
-    <section id="features" class="max-w-6xl mx-auto w-full px-6 pb-24 grid grid-cols-1 md:grid-cols-3 gap-6 z-10">
-        <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
-            <div class="text-2xl text-cyan-400">⚡</div>
-            <h3 class="text-lg font-bold text-white">Błyskawiczne WebSockets</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Wiadomości docierają do Twoich znajomych natychmiast, bez zbędnych opóźnień i bez odświeżania karty.</p>
+    <section id="features" class="max-w-6xl mx-auto w-full px-6 pt-24 pb-16 z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-white">Niesamowite możliwości</h2>
+            <p class="text-slate-400 mt-2">Wszystko, czego potrzebujesz do sprawnej komunikacji.</p>
         </div>
-        <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
-            <div class="text-2xl text-purple-400">🔮</div>
-            <h3 class="text-lg font-bold text-white">Styl Glassmorphism</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Unikalny, głęboki interfejs z efektem rozmytego szkła i ciemnym motywem skrojonym pod wieczorne sesje.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
-            <div class="text-2xl text-emerald-400">🛠️</div>
-            <h3 class="text-lg font-bold text-white">Hosting GitHub Pages</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Aplikacja odpala się bezpośrednio ze statycznego hostingu, łącząc się z darmową bazą czasu rzeczywistego.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
+                <div class="text-2xl text-cyan-400">⚡</div>
+                <h3 class="text-lg font-bold text-white">Błyskawiczne WebSockets</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Wiadomości docierają do Twoich znajomych natychmiast, bez zbędnych opóźnień i bez odświeżania karty.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
+                <div class="text-2xl text-purple-400">🔮</div>
+                <h3 class="text-lg font-bold text-white">Styl Glassmorphism</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Unikalny, głęboki interfejs z efektem rozmytego szkła i ciemnym motywem skrojonym pod wieczorne sesje.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
+                <div class="text-2xl text-emerald-400">🛠️</div>
+                <h3 class="text-lg font-bold text-white">Hosting GitHub Pages</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Aplikacja odpala się bezpośrednio ze statycznego hostingu, łącząc się z darmową bazą czasu rzeczywistego.</p>
+            </div>
         </div>
     </section>
 
-    <footer class="w-full h-14 border-t border-slate-900/60 bg-[#090d16]/40 flex items-center justify-between px-6 text-xs text-slate-500">
-        <div>© 2026 Volt Project. Wszelkie prawa zastrzeżone.</div>
-        <div class="flex gap-4">
-            <a href="#" class="hover:underline">Polityka prywatności</a>
-            <a href="#" class="hover:underline">Regulamin</a>
+    <section id="security" class="max-w-6xl mx-auto w-full px-6 pt-24 pb-16 z-10">
+        <div class="glass-card rounded-3xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Twoje dane są bezpieczne</span>
+                <h2 class="text-3xl md:text-4xl font-black text-white mt-2 leading-tight">Szyfrowanie i pełna prywatność rozmów</h2>
+                <p class="text-slate-400 mt-4 text-sm md:text-base leading-relaxed">
+                    W aplikacji Volt nie musisz martwić się o wycieki. Wszystkie połączenia live przechodzą przez zabezpieczone, szyfrowane protokoły SSL. Baza danych odrzuca nieautoryzowane zapytania, chroniąc Twoją tożsamość oraz historię wiadomości przed niepowołanym dostępem.
+                </p>
+                <div class="mt-6 flex flex-col gap-3 text-sm text-slate-300">
+                    <div class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Bezpieczny protokół WebSockets (WSS)</div>
+                    <div class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Izolacja tokenów użytkownika</div>
+                    <div class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Ochrona przed spamem i botami</div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-2xl border border-slate-800 text-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl"></div>
+                <div class="text-5xl mb-4">🛡</div>
+                <div class="text-xl font-bold text-white">Ochrona tarczy Volt</div>
+                <p class="text-xs text-slate-500 mt-2">Aktywne systemy zabezpieczeń monitorują integralność sesji 24/7.</p>
+            </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        // Jeśli Twoje logo jest jasne na białym tle (zamiast ciemnego), 
-        // zmień w kodzie powyżej 'mix-blend-mode: screen' na 'mix-blend-mode: multiply'.
-
-        function handleLogoClick() {
-            console.log("Kliknięto nowe logo - powrót na stronę główną");
-            window.location.reload();
-        }
-
-        function navigateToFeatures() {
-            console.log("Nawigacja do: Funkcje");
-            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function navigateToSecurity() {
-            console.log("Nawigacja do: Bezpieczeństwo");
-        }
-
-        function navigateToCommunity() {
-            console.log("Nawigacja do: Społeczność");
-        }
-
-        function openLoginMenu() {
-            console.log("Przekierowanie do ekranu logowania...");
-            window.location.href = 'login.html';
-        }
-    </script>
-
-</body>
-</html>
+    <section id="community" class="max-w-6xl mx-auto w-full px-6 pt-24 pb-32 z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-white">Zbuduj swoją społeczność</h2>
+            <p class="text-slate-400 mt-2">Volt daje Ci pełną kontrolę nad zarządzaniem serwerami i kanałami.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-8 rounded-2xl border border-slate-800/60">
+                <div class="text-cyan-400 font-bold text-lg mb-2"># Kanały Tematyczne</div>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Dziel dyskusje na dedykowane kanały tekstowe. Stwórz przestrzeń do luźnych rozmów, ogłoszeń, memów lub koordynacji projektów wewnątrz swojej grupy.
+                </p>
+            </div>
