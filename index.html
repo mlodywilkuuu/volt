@@ -42,10 +42,10 @@
         <div class="flex items-center gap-4">
             <div class="w-20 h-20 flex items-center justify-center select-none cursor-pointer overflow-hidden" onclick="handleLogoClick()">
                 <img 
-                    src="f2601e023e82f19058c9efb7db2c9485.gif" 
+                    src="7304cf01-cb04-4125-9ba9-0342801a466e.jpg" 
                     alt="Volt Logo" 
                     class="w-full h-full object-contain scale-125" 
-                    style="mix-blend-mode: screen; filter: brightness(1.1);-webkit-user-drag: none;" 
+                    style="mix-blend-mode: screen; filter: brightness(1.1); -webkit-user-drag: none;" 
                 />
             </div>
 
@@ -115,8 +115,11 @@
     </footer>
 
     <script>
+        // Jeśli Twoje logo jest jasne na białym tle (zamiast ciemnego), 
+        // zmień w kodzie powyżej 'mix-blend-mode: screen' na 'mix-blend-mode: multiply'.
+
         function handleLogoClick() {
-            console.log("Kliknięto logo - powrót na stronę główną");
+            console.log("Kliknięto nowe logo - powrót na stronę główną");
             window.location.reload();
         }
 
