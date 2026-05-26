@@ -39,13 +39,13 @@
 
     <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-6 h-16 flex items-center justify-between">
         
-        <div class="flex items-center gap-6">
-            <div class="w-10 h-10 flex items-center justify-center select-none cursor-pointer" onclick="handleLogoClick()">
+        <div class="flex items-center gap-4">
+            <div class="w-20 h-20 flex items-center justify-center select-none cursor-pointer overflow-hidden" onclick="handleLogoClick()">
                 <img 
                     src="f2601e023e82f19058c9efb7db2c9485.gif" 
                     alt="Volt Logo" 
-                    class="w-full h-full object-contain" 
-                    style="mix-blend-mode: screen;" 
+                    class="w-full h-full object-contain scale-125" 
+                    style="mix-blend-mode: screen; filter: brightness(1.1);-webkit-user-drag: none;" 
                 />
             </div>
 
@@ -117,28 +117,25 @@
     <script>
         function handleLogoClick() {
             console.log("Kliknięto logo - powrót na stronę główną");
-            window.location.reload(); // Przykładowa akcja: odświeżenie strony głównej
+            window.location.reload();
         }
 
         function navigateToFeatures() {
             console.log("Nawigacja do: Funkcje");
-            // Płynny scroll do sekcji funkcji
             document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
         }
 
         function navigateToSecurity() {
             console.log("Nawigacja do: Bezpieczeństwo");
-            // Tutaj możesz wpiąć akcję, np. otwarcie modala z opisem bezpieczeństwa
         }
 
         function navigateToCommunity() {
             console.log("Nawigacja do: Społeczność");
-            // Miejsce na Twój kod
         }
 
         function openLoginMenu() {
             console.log("Przekierowanie do ekranu logowania...");
-            window.location.href = 'login.html'; // Przejście do pliku login.html
+            window.location.href = 'login.html';
         }
     </script>
 
