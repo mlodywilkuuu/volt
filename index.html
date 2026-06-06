@@ -2,35 +2,36 @@
 <html>
 <head>
     <style>
-        body { margin: 0; background: #333; display: flex; justify-content: center; height: 100vh; }
-        #phone-frame { width: 320px; height: 600px; background: black; color: white; position: relative; overflow: hidden; border: 10px solid #555; border-radius: 20px; }
+        body { margin: 0; background: #222; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         
-        .screen { display: none; padding: 20px; }
+        #phone-frame { width: 320px; height: 600px; background: #000; border-radius: 40px; position: relative; overflow: hidden; border: 8px solid #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        
+        .screen { position: absolute; width: 100%; height: 100%; display: none; transition: 0.3s; }
         .active { display: block; }
         
-        /* Pasek menu */
-        #top-bar { height: 25px; background: #222; display: flex; justify-content: space-between; padding: 5px; font-size: 12px; }
+        /* Styl iOS */
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; color: white; padding: 15px; margin: 10px; }
         
-        /* Powiadomienia */
-        .notification { background: #444; padding: 10px; margin: 5px 0; border-radius: 5px; }
+        /* Powiadomienie */
+        #notification-box { position: absolute; top: -100px; width: 280px; left: 10px; transition: 0.5s; z-index: 10; }
+        .show-notif { top: 40px !important; }
     </style>
 </head>
 <body>
 
 <div id="phone-frame">
-    <div id="top-bar"><span>10:28</span> <span>WiFi [ON]</span></div>
-
-    <div id="lock-screen" class="screen active">
-        <h1>10:28</h1>
-        <button onclick="showScreen('home-screen')">Przesuń, aby odblokować</button>
+    <div id="lock-screen" class="screen active" style="background: linear-gradient(to bottom, #5f2c82, #49a09d);">
+        <h1 style="text-align: center; margin-top: 150px; font-size: 3em;">10:30</h1>
+        <div style="text-align: center; cursor: pointer;" onclick="showScreen('home-screen')">Przesuń, aby odblokować</div>
     </div>
 
-    <div id="home-screen" class="screen">
-        <h3>Ekran Główny</h3>
-        <div id="notifications">
-            <div class="notification">Nowa wiadomość: Domestos...</div>
-        </div>
-        <button onclick="addNotification()">Dodaj powiadomienie</button>
+    <div id="home-screen" class="screen" style="background: #000;">
+        <div class="glass" onclick="triggerNotification()">Kliknij, aby przetestować powiadomienie</div>
+    </div>
+
+    <div id="notification-box" class="glass">
+        <strong>Domestos OS</strong><br>
+        Nowa wiadomość: System gotowy do pracy!
     </div>
 </div>
 
@@ -39,11 +40,11 @@
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
     }
-    function addNotification() {
-        const n = document.createElement('div');
-        n.className = 'notification';
-        n.innerText = 'Nowe powiadomienie!';
-        document.getElementById('notifications').appendChild(n);
+
+    function triggerNotification() {
+        const n = document.getElementById('notification-box');
+        n.classList.add('show-notif');
+        setTimeout(() => n.classList.remove('show-notif'), 3000);
     }
 </script>
 
