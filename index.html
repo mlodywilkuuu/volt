@@ -1,21 +1,51 @@
 <!DOCTYPE html>
-<html style="background-color: #000; color: #0f0; font-family: 'Courier New', Courier, monospace;">
+<html>
 <head>
-    <title>Kernel Status</title>
+    <style>
+        body { margin: 0; background: #333; display: flex; justify-content: center; height: 100vh; }
+        #phone-frame { width: 320px; height: 600px; background: black; color: white; position: relative; overflow: hidden; border: 10px solid #555; border-radius: 20px; }
+        
+        .screen { display: none; padding: 20px; }
+        .active { display: block; }
+        
+        /* Pasek menu */
+        #top-bar { height: 25px; background: #222; display: flex; justify-content: space-between; padding: 5px; font-size: 12px; }
+        
+        /* Powiadomienia */
+        .notification { background: #444; padding: 10px; margin: 5px 0; border-radius: 5px; }
+    </style>
 </head>
-<body style="padding: 20px;">
-    <h1>SYSTEM_CORE_V1.0</h1>
-    <p>> status: wczytywanie...</p>
-    <hr style="border: 0; border-top: 1px solid #0f0;">
-    
-    <div id="logs">
-        <p>> Bootloader: [OK]</p>
-        <p>> Kernel: [OK]</p>
-        <p>> UART_Driver: [IN_PROGRESS]</p>
+<body>
+
+<div id="phone-frame">
+    <div id="top-bar"><span>10:28</span> <span>WiFi [ON]</span></div>
+
+    <div id="lock-screen" class="screen active">
+        <h1>10:28</h1>
+        <button onclick="showScreen('home-screen')">Przesuń, aby odblokować</button>
     </div>
 
-    <footer style="margin-top: 50px; font-size: 0.8em;">
-        &copy; 2026 Twój System Operacyjny
-    </footer>
+    <div id="home-screen" class="screen">
+        <h3>Ekran Główny</h3>
+        <div id="notifications">
+            <div class="notification">Nowa wiadomość: Domestos...</div>
+        </div>
+        <button onclick="addNotification()">Dodaj powiadomienie</button>
+    </div>
+</div>
+
+<script>
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+    function addNotification() {
+        const n = document.createElement('div');
+        n.className = 'notification';
+        n.innerText = 'Nowe powiadomienie!';
+        document.getElementById('notifications').appendChild(n);
+    }
+</script>
+
 </body>
 </html>
